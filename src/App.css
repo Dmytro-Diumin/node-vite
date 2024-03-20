@@ -18,6 +18,18 @@
   filter: drop-shadow(0 0 2em #61dafbaa);
 }
 
+button {
+  background-color: rgb(6, 186, 241);
+  padding: 10px 10px;
+  border-radius: 16px;
+  border: none;
+}
+
+button:hover {
+  background-color: cadetblue;
+  color: brown;
+}
+
 @keyframes logo-spin {
   from {
     transform: rotate(0deg);

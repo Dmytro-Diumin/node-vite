@@ -9,11 +9,17 @@ function App() {
   const [theme, setTheme] = useState("light");
 
   const toggleTheme = () => {
-    setTheme(theme === "light" ? "dark" : "light");
+    // setTheme(theme === "light" ? "dark" : "light");
+    // setTheme((theme === "light" && "dark") || "light");
+    if (theme === "light") {
+      setTheme("dark");
+    } else {
+      setTheme("light");
+    }
   };
 
   return (
-    <>
+    <div className={clsx(theme)}>
       <div className="viteReact">
         <a href="https://vitejs.dev" target="_blank">
           <img src={viteLogo} className="logo" alt="Vite logo" />
@@ -22,7 +28,7 @@ function App() {
           <img src={reactLogo} className="logo react" alt="React logo" />
         </a>
       </div>
-      <h1 className={clsx(theme)}>Vite + React is amazing</h1>
+      <h1>Vite + React is amazing</h1>
       <div className="card">
         <button onClick={() => setCount((count) => count + 1)}>
           count is {count}
@@ -35,7 +41,7 @@ function App() {
         Click on the Vite and React logos to learn more
       </p>
       <button onClick={toggleTheme}>Toggle Theme: {theme}</button>
-    </>
+    </div>
   );
 }
 
