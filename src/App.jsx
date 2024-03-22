@@ -1,13 +1,16 @@
+import { useEffect } from "react";
 import { useState } from "react";
+import Header from "./components/Task2";
 import reactLogo from "./assets/react.svg";
 import viteLogo from "/vite.svg";
 import "./App.css";
 import clsx from "clsx";
+import dayjs from "dayjs";
 
 function App() {
   const [count, setCount] = useState(0);
   const [theme, setTheme] = useState("light");
-
+  const [lastUpdatedDate, setLastUpdatedDate] = useState(null);
   const toggleTheme = () => {
     // setTheme(theme === "light" ? "dark" : "light");
     // setTheme((theme === "light" && "dark") || "light");
@@ -17,6 +20,10 @@ function App() {
       setTheme("light");
     }
   };
+
+  useEffect(() => {
+    setLastUpdatedDate(dayjs().format("HH:mm:ss MMMM,DD"));
+  }, [theme, count]);
 
   return (
     <div className={clsx(theme)}>
@@ -40,7 +47,9 @@ function App() {
       <p className="read-the-docs">
         Click on the Vite and React logos to learn more
       </p>
+      <Header></Header>
       <button onClick={toggleTheme}>Toggle Theme: {theme}</button>
+      <p className="lastUpdatedDate">lastUpdatedDate: {lastUpdatedDate}</p>
     </div>
   );
 }

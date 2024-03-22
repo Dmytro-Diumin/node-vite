@@ -67,3 +67,10 @@ button:hover {
   background: black;
   color: #fff;
 }
+
+.lastUpdatedDate {
+  margin-top: 10px;
+  padding: 10px;
+  border: solid 2px red;
+  border-radius: 16px;
+}
