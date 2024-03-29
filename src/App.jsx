@@ -1,6 +1,6 @@
-import { useEffect } from "react";
-import { useState } from "react";
-import Header from "./components/Task2";
+import { useEffect, useState } from "react";
+import Header from "./components/Task2/Header";
+import Tours from "./components/Tours/Tours";
 import reactLogo from "./assets/react.svg";
 import viteLogo from "/vite.svg";
 import "./App.css";
@@ -47,7 +47,8 @@ function App() {
       <p className="read-the-docs">
         Click on the Vite and React logos to learn more
       </p>
-      <Header></Header>
+      {/* <Header></Header> */}
+      <Tours></Tours>
       <button onClick={toggleTheme}>Toggle Theme: {theme}</button>
       <p className="lastUpdatedDate">lastUpdatedDate: {lastUpdatedDate}</p>
     </div>
