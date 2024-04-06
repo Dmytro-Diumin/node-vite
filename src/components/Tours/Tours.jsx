@@ -1,11 +1,13 @@
 import { useEffect, useState } from "react";
 import clsx from "clsx";
-
-import { fetchTours } from "../helpers/getTours";
+import { iziToastRef } from "../helpers/izitoast";
+// import { fetchTours } from "../helpers/getTours";
 import TourItem from "../Tour-item/TourItem";
 import TourForm from "../Tour-form/TourForm";
 
 import "./Tours.scss";
+import { fetchTours } from "../../api/tours";
+import iziToast from "izitoast";
 
 const Tours = ({ theme }) => {
   const [isOpen, setIsOpen] = useState(false);
@@ -13,24 +15,19 @@ const Tours = ({ theme }) => {
   const [searchValue, setSearchValue] = useState("");
 
   useEffect(() => {
-    // console.log('work after mount in Tours page');
     const load = async () => {
-      const responseData = await fetchTours();
-      // console.log('load success', responseData);
-      window.localStorage.setItem("tours", JSON.stringify(responseData));
-      setTours(responseData);
+      try {
+        //лоадер перед запитом завжди
+        const resData = await fetchTours();
+        console.log(resData);
+        setTours(resData);
+      } catch (error) {
+        console.log(error);
+        iziToastRef.onError();
+      }
     };
 
-    const localStorageData = window.localStorage.getItem("tours");
-
-    // console.log('response from localStorage', localStorageData);
-
-    if (localStorageData) {
-      setTours(JSON.parse(localStorageData));
-      // console.log(JSON.parse(localStorageData));
-    } else {
-      load();
-    }
+    load();
   }, []);
 
   const handleChangeSearch = (event) => {
